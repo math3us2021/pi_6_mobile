@@ -3,12 +3,15 @@ import {ScrollView, StatusBar, Text, TouchableOpacity, View} from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import TrendingMovies from "../component/trendingMovies";
+import MovieList from "../component/movieList";
 
 export default function HomeScreen() {
     const [trending, setTrending] = useState([1,2,3])
+    const [upcoming, setUpcoming] = useState([1,2,3,])
+    const [toRated, setToRated] = useState([1,2,3])
 
     return (
-        <View className="flex-1  bg-neutral-800">
+        <View className="flex-1 mt-2 bg-neutral-800">
         <SafeAreaView className="mb-3">
             <StatusBar style="light" />
             <View className="flex-row justify-between items-center mx-4">
@@ -25,10 +28,11 @@ export default function HomeScreen() {
                 contentContainerStyle={{ paddingBottom: 10 }}
             >
             {/*    Trending Movies Carrosel */}
-                <TrendingMovies
-                    data={trending}
-                />
+                <TrendingMovies data={trending} />
 
+                <MovieList  title="Próximos lançamentos" data={upcoming}/>
+
+                <MovieList  title="Mais Votados" data={upcoming}/>
             </ScrollView>
 
         </View>

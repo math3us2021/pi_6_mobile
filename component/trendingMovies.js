@@ -1,27 +1,38 @@
-import {Text, Touchable, TouchableWithoutFeedback, View} from "react-native";
+import {Dimensions, Image, Text, Touchable, TouchableWithoutFeedback, View} from "react-native";
 import Carousel from 'react-native-snap-carousel';
+import {useNavigation} from "@react-navigation/native";
+
+var {width, height } = Dimensions.get('window');
 
 export default function TrendingMovies({data}) {
+    const navigation = useNavigation();
+    const handleClick = (item)=> {
+        navigation.navigate('Movie', item)
+    }
     return (
         <View className="mb-8">
-          <Text className="text-3xl font-bold text-neutral-100">Trending Movies</Text>
             <Carousel
                 // ref={(c) => { this._carousel = c; }}
                 data={data}
-                renderItem={({item})=> <MovieCard item={item} />}
+                renderItem={({item})=> <MovieCard item={item} handleClick={handleClick} />}
                 inactiveSlideOpacity={0.60}
-                sliderWidth={600}
-                itemWidth={400}
+                sliderWidth={width}
+                itemWidth={width*0.62}
+                loop={true}
                 slideStyle={{ display: 'flex', alignItems: 'center'}}
             />
         </View>
     );
 }
 
-const MovieCard = ({item})=> {
+const MovieCard = ({item, handleClick})=> {
     return (
-        <TouchableWithoutFeedback>
-            <Text className="text-write" >Movie</Text>
+        <TouchableWithoutFeedback onPress={()=>handleClick(item)}>
+            <Image
+                source={require('../assets/images/hash.png')}
+                style={{width: width*0.60, height: height*0.40}}
+                className="rounded-lg"
+            />
         </TouchableWithoutFeedback>
     )
 }
