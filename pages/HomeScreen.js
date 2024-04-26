@@ -4,8 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import TrendingMovies from "../component/trendingMovies";
 import MovieList from "../component/movieList";
+import {useNavigation} from "@react-navigation/native";
 
 export default function HomeScreen() {
+    const navigation = useNavigation();
+
     const [trending, setTrending] = useState([1,2,3])
     const [upcoming, setUpcoming] = useState([1,2,3,])
     const [toRated, setToRated] = useState([1,2,3])
@@ -17,7 +20,7 @@ export default function HomeScreen() {
             <View className="flex-row justify-between items-center mx-4">
                 <Bars3CenterLeftIcon size="30" strokeWidth={2} color={"#fff"} />
                 <Text className="text-3xl font-bold text-neutral-100">Movies</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Search')}>
                     <MagnifyingGlassIcon size="30" strokeWidth={2} color={"#fff"} />
                 </TouchableOpacity>
             </View>

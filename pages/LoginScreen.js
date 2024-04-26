@@ -1,6 +1,15 @@
-import {View, Text, TouchableOpacity, Image, Dimensions, TextInput, Button} from "react-native";
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    Image,
+    Dimensions,
+    TextInput,
+    Button,
+    ImageBackground,
+    Pressable, ScrollView
+} from "react-native";
 import React from "react";
-import {LinearGradient} from "expo-linear-gradient";
 import {useNavigation} from "@react-navigation/native";
 
 var {width, height} = Dimensions.get('window');
@@ -14,39 +23,43 @@ export default function LoginScreen() {
     }
 
     return (
-            <View className="flex-1 bg-neutral-900">
-                <View className="flex-row justify-center items-center">
-                    <Image
-                        source={require('../assets/images/indica.jpg')}
-                        style={{width, height: height * 0.55}}
-                    />
-                    <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
-                                    style={{
-                                        width, height: height * 0.40,
-                                    }}
-                                    start={{x: 0.5, y: 0}}
-                                    end={{x: 0.5, y: 1}}
-                                    className={"absolute bottom-0"}
-                    />
-                </View>
-                <View style={{ marginTop: -(height * 0.09) }} className="space-y-3">
-                    <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10 }}
-                        // onChangeText={handleInputChange}
-                        value={text}
-                        placeholder="Digite algo..."
-                    />
-                    <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderWidth: 1, paddingHorizontal: 10 }}
-                        // onChangeText={handleInputChange}
-                        value={text}
-                        placeholder="Digite algo..."
-                    />
-                    <Button
-                        title="Exibir texto"
-                        onPress={handleButtonPress}
-                    />
-                </View>
+        <ImageBackground
+            width={width}
+            height={height}
+            source={require('../assets/images/img_login.png')}
+            className="flex-1 bg-neutral-900 justify-center"
+        >
+
+            <View className="flex-col mb-12 justify-center items-center">
+                <Image
+                    source={require('../assets/images/logo.png')}
+                />
             </View>
+            <View className="mx-4 mb-3 flex-col justify-center items-center">
+                <TextInput
+                    placeholder={"Usuário"}
+                    placeholderTextColor={"lightgray"}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+
+                <TextInput
+                    placeholder={"Senha"}
+                    placeholderTextColor={"lightgray"}
+                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <View className="mt-5 w-1/2 bg-orange-400 rounded-lg">
+                    <Button
+                        onPress={handleButtonPress}
+                        title="Entrar"
+                        color="#FF8C19"
+                        />
+                </View>
+                <Pressable
+                    className="text-right text-blue-500 mt-2"
+                    onPress={() => navigation.navigate('User')}>
+                    <Text className="text-right text-blue-500 mt-2">Cadastrar-se</Text>
+                </Pressable>
+            </View>
+        </ImageBackground>
     )
 }
