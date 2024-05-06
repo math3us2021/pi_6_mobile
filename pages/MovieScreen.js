@@ -6,6 +6,7 @@ import {ChevronLeftIcon} from "react-native-heroicons/outline";
 import {HeartIcon} from "react-native-heroicons/solid";
 import {LinearGradient} from "expo-linear-gradient";
 import Cast from "../component/cast";
+import {featchMovieCredits, featchMovieDetails, image185, image500} from "../api/moviedb";
 
 var {width, height} = Dimensions.get('window');
 
@@ -14,11 +15,25 @@ export default function MovieScreen() {
 
     const {params: item} = useRoute();
     const [isFavorite, setIsFavorite] = React.useState(false);
-    const [cast, setCast] = useState([1,2,3,4,5])
+    const [cast, setCast] = useState([])
+    const [movie, setMovie] = useState({})
     const navigation = useNavigation();
     useEffect(() => {
+        // console.log('Movie Details', item.id)
+        getMovieDetails(item.id)
+        getMovieCredits(item.id)
     }, [item]);
 
+    const getMovieDetails = async id => {
+        const data = await featchMovieDetails(id);
+        if (data) setMovie(data)
+    }
+
+    const getMovieCredits = async id => {
+        const data = await featchMovieCredits(id);
+        console.log('Movie Credits', data.cast)
+        if (data && data.cast) setCast(data.cast)
+    }
     return (
         <ScrollView
             contentContainerStyle={{paddingBottom: 20}}
@@ -35,7 +50,8 @@ export default function MovieScreen() {
                 </SafeAreaView>
                 <View className="flex-row justify-center items-center">
                     <Image
-                        source={require('../assets/images/sex.jpg')}
+                        // source={require('../assets/images/sex.jpg')}
+                        source={{uri: image500(movie?.poster_path || '../assets/images/indica.jpg')}}
                         style={{width, height: height * 0.55}}
                     />
                     <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
@@ -48,24 +64,36 @@ export default function MovieScreen() {
                     />
                 </View>
             </View>
-            <View style={{ marginTop: -(height * 0.09) }} className="space-y-3">
+            <View style={{marginTop: -(height * 0.09)}} className="space-y-3">
                 {/*Title*/}
-                <Text className="text-3xl text-white text-center font-bold tracking-wider">{movieName}</Text>
+                <Text className="text-3xl text-white text-center font-bold tracking-wider">{
+                    movie?.title
+                }</Text>
                 {/*Status*/}
-                <Text className="text-neutral-400 font-semibold text-base text-center">Release * 2021 * 1h 30m</Text>
-            {/*    Genero*/}
+                {
+                    movie?.id ? (
+                        <Text
+                            className="text-neutral-400 font-semibold text-base text-center">{movie?.status} * {movie?.release_date.split('-')[0]} * {movie?.runtime} min</Text>
+                    ) : null
+                }
+                {/*    Genero*/}
                 <View className="flex-row justify-center mx-4 space-x-2">
-                    <Text className="text-neutral-400 font-semibold text-base text-center">Ação * Suspense</Text>
+                        {
+                            movie?.genres?.map((item, index) => {
+                                return (
+                                    <Text key={index} className="text-neutral-400 font-semibold text-base text-center">
+                                        {item.name}
+                                        {index < movie.genres.length - 1 ? ', ' : ''}
+                                    </Text>
+                                )
+                            })
+                        }
 
                 </View>
                 <Text className="text-neutral-400 mx-4 tracking-wide">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci alias animi aperiam atque
-                    consequatur, cumque deserunt doloremque doloribus ducimus ea earum eos est eum explicabo facere
-                    fugiat fugit harum id impedit inventore ipsam iusto laborum laudantium magnam maxime minima modi
-                    molestias mollitia natus nemo nisi nobis non nulla obcaecati officia optio pariatur perspiciatis
-                    placeat porro praesentium quae quas quia quidem quisquam quo ratione recusandae rem repellendus
-                    repudiandae rerum saepe sapiente sequi similique sit soluta sunt suscipit tempora tenetur totam
-                    ullam unde vel velit veritatis voluptas voluptate voluptatem voluptatum.
+                    {
+                        movie?.overview
+                    }
                 </Text>
             </View>
             <Cast navigation={navigation} cast={cast}/>
