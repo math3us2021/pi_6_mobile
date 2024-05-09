@@ -9,7 +9,7 @@ import Cast from "../component/cast";
 
 var {width, height} = Dimensions.get('window');
 
-export default function UserScreen() {
+export default function SuggestionScreen() {
 
     const {params: item} = useRoute();
     const [isFavorite, setIsFavorite] = React.useState(false);
@@ -44,7 +44,7 @@ export default function UserScreen() {
                     />
                 </View>
             </View>
-            <Text className="text-3xl text-white text-center font-bold tracking-wider mb-5">Cadastro Usuário</Text>
+            <Text className="text-3xl text-white text-center font-bold tracking-wider mb-5"> Formulário para sugestão</Text>
             <View className="mx-4 mb-3 flex-col justify-center items-center">
                 <TextInput
                     placeholder={"Usuário"}
@@ -74,7 +74,7 @@ export default function UserScreen() {
                     className="bg-orange-400 w-1/2 h-10 flex-col justify-center items-center rounded-lg"
                     onPress={() => navigation.navigate('Home')}
                 >
-                    <Text className="text-lg">Cadastrar</Text>
+                    <Text className="text-lg">Gerar</Text>
                 </Pressable>
             </View>
 

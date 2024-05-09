@@ -7,6 +7,7 @@ import {HeartIcon} from "react-native-heroicons/solid";
 import {LinearGradient} from "expo-linear-gradient";
 import Cast from "../component/cast";
 import {featchMovieCredits, featchMovieDetails, image185, image500} from "../api/moviedb";
+import {Loading} from "../component/loading";
 
 var {width, height} = Dimensions.get('window');
 
@@ -17,7 +18,10 @@ export default function MovieScreen() {
     const [isFavorite, setIsFavorite] = React.useState(false);
     const [cast, setCast] = useState([])
     const [movie, setMovie] = useState({})
+    const [loading, setLoading] = useState(true)
+
     const navigation = useNavigation();
+
     useEffect(() => {
         // console.log('Movie Details', item.id)
         getMovieDetails(item.id)
@@ -27,6 +31,7 @@ export default function MovieScreen() {
     const getMovieDetails = async id => {
         const data = await featchMovieDetails(id);
         if (data) setMovie(data)
+        setLoading(false)
     }
 
     const getMovieCredits = async id => {
@@ -48,21 +53,29 @@ export default function MovieScreen() {
                         <HeartIcon size="35" color={isFavorite ? "red" : "white"}/>
                     </TouchableOpacity>
                 </SafeAreaView>
-                <View className="flex-row justify-center items-center">
-                    <Image
-                        // source={require('../assets/images/sex.jpg')}
-                        source={{uri: image500(movie?.poster_path || '../assets/images/indica.jpg')}}
-                        style={{width, height: height * 0.55}}
-                    />
-                    <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
-                                    style={{
-                                        width, height: height * 0.40,
-                                    }}
-                                    start={{x: 0.5, y: 0}}
-                                    end={{x: 0.5, y: 1}}
-                                    className={"absolute bottom-0"}
-                    />
-                </View>
+
+                {
+                    loading? (
+                        <Loading  />
+                    ): (
+                        <View className="flex-row justify-center items-center">
+                            <Image
+                                // source={require('../assets/images/sex.jpg')}
+                                source={{uri: image500(movie?.poster_path || '../assets/images/indica.jpg')}}
+                                style={{width, height: height * 0.55}}
+                            />
+                            <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
+                                            style={{
+                                                width, height: height * 0.40,
+                                            }}
+                                            start={{x: 0.5, y: 0}}
+                                            end={{x: 0.5, y: 1}}
+                                            className={"absolute bottom-0"}
+                            />
+                        </View>
+                    )
+                }
+
             </View>
             <View style={{marginTop: -(height * 0.09)}} className="space-y-3">
                 {/*Title*/}

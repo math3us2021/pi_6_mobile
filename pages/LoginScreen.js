@@ -47,17 +47,18 @@ export default function LoginScreen() {
                     placeholderTextColor={"lightgray"}
                     className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <View className="mt-5 w-1/2 bg-orange-400 rounded-lg">
-                    <Button
+                <View className="mt-5 w-1/2 bg-orange-400 rounded-lg flex-col justify-center items-center">
+                    <Pressable
+                        className="bg-orange-400 w-1/2 h-10 flex-col justify-center items-center rounded-lg"
                         onPress={handleButtonPress}
-                        title="Entrar"
-                        color="#FF8C19"
-                        />
+                    >
+                        <Text className="text-lg">Entrar</Text>
+                    </Pressable>
                 </View>
                 <Pressable
                     className="text-right text-blue-500 mt-2"
                     onPress={() => navigation.navigate('User')}>
-                    <Text className="text-right text-blue-500 mt-2">Cadastrar-se</Text>
+                    <Text className="text-right text-lg text-blue-500 mt-2">Cadastrar-se</Text>
                 </Pressable>
             </View>
         </ImageBackground>

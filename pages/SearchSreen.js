@@ -9,7 +9,7 @@ import {
     Image
 } from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
-import React from "react";
+import React, {useState} from "react";
 import {XMarkIcon} from "react-native-heroicons/outline";
 import {useNavigation} from "@react-navigation/native";
 import {image185, searchMovies} from "../api/moviedb";
@@ -19,11 +19,12 @@ var {width, height} = Dimensions.get('window');
 export default function SearchScreen() {
     const navigation = useNavigation();
     const [results, setResults] = React.useState([])
-    const handleSearch = value=>{
-        console.log('change', value)
-    }
+    const [loading, setLoading] = useState(false)
+
+
 
     const handleTextDebounce = (value) => {
+        setLoading(true)
         if (value.length > 2) searchMovies({
             query: value,
             include_adult: false,
@@ -32,6 +33,7 @@ export default function SearchScreen() {
         }).then(data => {
             console.log('Data', data)
             if (data && data.results) setResults(data.results)
+            setLoading(false)
         })
     }
     return (
@@ -63,7 +65,7 @@ export default function SearchScreen() {
                                 results.map((item, index) => (
                                     <TouchableWithoutFeedback
                                         key={index}
-                                        onPress={() => navigation.navigate('Movie', {item})}
+                                        onPress={() => navigation.navigate('Movie', item)}
                                     >
                                         <View className="space-y-2 mb-4">
 
@@ -85,7 +87,7 @@ export default function SearchScreen() {
                 ):(
                     <View className="flex-1 justify-center items-center">
                         <Image
-                            source={require('../assets/images/film_mov.png')}
+                            source={require('../assets/images/picture.png')}
                             // className="h-96 w-96"
                             />
                     </View>

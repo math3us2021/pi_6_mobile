@@ -6,6 +6,7 @@ import MovieScreen from "../pages/MovieScreen";
 import LoginScreen from "../pages/LoginScreen";
 import SearchScreen from "../pages/SearchSreen";
 import UserScreen from "../pages/UserScreen";
+import SuggestionScreen from "../pages/SuggestionScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="Movie" component={MovieScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Suggestion" component={SuggestionScreen} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
