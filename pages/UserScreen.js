@@ -6,17 +6,25 @@ import {ChevronLeftIcon} from "react-native-heroicons/outline";
 import {HeartIcon} from "react-native-heroicons/solid";
 import {LinearGradient} from "expo-linear-gradient";
 import Cast from "../component/cast";
+import {GenderMovie} from "../component/gender";
 
 var {width, height} = Dimensions.get('window');
 
 export default function UserScreen() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
 
     const {params: item} = useRoute();
-    const [isFavorite, setIsFavorite] = React.useState(false);
-    const [cast, setCast] = useState([1, 2, 3, 4, 5])
     const navigation = useNavigation();
     useEffect(() => {
     }, [item]);
+
+    const handleSelectedGenres = (selectedGenres) => {
+        // Faça o que for necessário com os gêneros selecionados
+        console.log("Gêneros selecionados:", selectedGenres);
+    };
 
     return (
         <ScrollView
@@ -48,27 +56,36 @@ export default function UserScreen() {
             <View className="mx-4 mb-3 flex-col justify-center items-center">
                 <TextInput
                     placeholder={"Usuário"}
+                    value={username}
+                    onChangeText={setUsername}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <TextInput
                     placeholder={"Senha"}
+                    value={password}
+                    onChangeText={setPassword}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 <TextInput
                     placeholder={"Email"}
+                    value={email}
+                    onChangeText={setEmail}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 border mt-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg border mt-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <TextInput
                     placeholder={"Fone"}
+                    value={phone}
+                    onChangeText={setPhone}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </View>
+            <GenderMovie  onSelectGenres={handleSelectedGenres}/>
             <View  className="mt-5 flex-col justify-center items-center">
                 <Pressable
                     className="bg-orange-400 w-1/2 h-10 flex-col justify-center items-center rounded-lg"

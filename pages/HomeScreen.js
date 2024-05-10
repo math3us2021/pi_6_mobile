@@ -34,7 +34,6 @@ export default function HomeScreen() {
     }
     const getTopRoteMovies = async () => {
         const data = await featchTopRatedMovies()
-        console.log('test........', data)
         if (data && data.results) setToRated(data.results)
     }
 

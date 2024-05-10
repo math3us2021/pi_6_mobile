@@ -31,7 +31,6 @@ export default function SearchScreen() {
             language: 'pt-BR',
             page: 1
         }).then(data => {
-            console.log('Data', data)
             if (data && data.results) setResults(data.results)
             setLoading(false)
         })

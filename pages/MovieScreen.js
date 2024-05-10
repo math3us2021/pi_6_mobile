@@ -36,7 +36,6 @@ export default function MovieScreen() {
 
     const getMovieCredits = async id => {
         const data = await featchMovieCredits(id);
-        console.log('Movie Credits', data.cast)
         if (data && data.cast) setCast(data.cast)
     }
     return (

@@ -1,4 +1,4 @@
-import {Dimensions, ScrollView, Text, TouchableOpacity, View, Image, TextInput, Button, Pressable} from "react-native";
+import {Dimensions, ScrollView, Text, TouchableOpacity, View, Image, TextInput, Button, Pressable, StyleSheet} from "react-native";
 import React, {useEffect, useState} from "react";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -6,6 +6,8 @@ import {ChevronLeftIcon} from "react-native-heroicons/outline";
 import {HeartIcon} from "react-native-heroicons/solid";
 import {LinearGradient} from "expo-linear-gradient";
 import Cast from "../component/cast";
+import RNPickerSelect from 'react-native-picker-select';
+import {GenderMovie} from "../component/gender";
 
 var {width, height} = Dimensions.get('window');
 
@@ -57,6 +59,20 @@ export default function SuggestionScreen() {
                     placeholderTextColor={"lightgray"}
                     className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
+                <RNPickerSelect
+                    style={pickerSelectStyles}
+                    placeholder={{
+                        label: 'Selecione ...',
+                        value: null,
+                    }}
+                    onValueChange={(value) => console.log(value)}
+                    items={[
+                        { label: 'Football', value: 'football' },
+                        { label: 'Baseball', value: 'baseball' },
+                        { label: 'Hockey', value: 'hockey' },
+                    ]}
+                />
+
                 <TextInput
                     placeholder={"Email"}
                     placeholderTextColor={"lightgray"}
@@ -69,6 +85,10 @@ export default function SuggestionScreen() {
                     className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </View>
+
+            <GenderMovie />
+
+
             <View  className="mt-5 flex-col justify-center items-center">
                 <Pressable
                     className="bg-orange-400 w-1/2 h-10 flex-col justify-center items-center rounded-lg"
@@ -82,3 +102,26 @@ export default function SuggestionScreen() {
 
     )
 }
+
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        fontSize: 20,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 4,
+        color: 'write',
+        paddingRight: 30
+    },
+    inputAndroid: {
+        fontSize: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 0.5,
+        borderColor: 'purple',
+        borderRadius: 8,
+        color: 'write',
+        paddingRight: 30
+    }
+});
