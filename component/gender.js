@@ -39,7 +39,7 @@ export function GenderMovie({ onSelectGenres }) {
                     suggestions.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-400' : 'bg-gray-50'}`}
+                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-300' : 'bg-gray-50'}`}
                             // className="bg-gray-50 w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg "
                             onPress={() => includeSuggestions(item.name)}
                         >
@@ -53,7 +53,7 @@ export function GenderMovie({ onSelectGenres }) {
                     suggestions1.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-400' : 'bg-gray-50'}`}
+                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-300' : 'bg-gray-50'}`}
 
                             // className="bg-gray-50 w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg "
                             onPress={() => includeSuggestions(item.name)}

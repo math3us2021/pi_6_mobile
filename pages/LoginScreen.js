@@ -30,9 +30,10 @@ export default function LoginScreen() {
             className="flex-1 bg-neutral-900 justify-center"
         >
 
-            <View className="flex-col mb-12 justify-center items-center">
+            <View className="flex-col justify-center items-center">
                 <Image
-                    source={require('../assets/images/logo.png')}
+                    source={require('../assets/images/img.png')}
+                    style={{ width: 250, height: 300 ,resizeMode: 'contain' }}
                 />
             </View>
             <View className="mx-4 mb-3 flex-col justify-center items-center">

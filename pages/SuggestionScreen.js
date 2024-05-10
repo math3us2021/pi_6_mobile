@@ -20,6 +20,8 @@ export default function SuggestionScreen() {
     useEffect(() => {
     }, [item]);
 
+
+
     return (
         <ScrollView
             contentContainerStyle={{paddingBottom: 20}}
@@ -86,7 +88,6 @@ export default function SuggestionScreen() {
                 />
             </View>
 
-            <GenderMovie />
 
 
             <View  className="mt-5 flex-col justify-center items-center">

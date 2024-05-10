@@ -3,10 +3,10 @@ import React, {useEffect, useState} from "react";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {ChevronLeftIcon} from "react-native-heroicons/outline";
-import {HeartIcon} from "react-native-heroicons/solid";
 import {LinearGradient} from "expo-linear-gradient";
-import Cast from "../component/cast";
 import {GenderMovie} from "../component/gender";
+import axios from 'axios';
+
 
 var {width, height} = Dimensions.get('window');
 
@@ -15,6 +15,7 @@ export default function UserScreen() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [gender, setGender] = useState([])
 
     const {params: item} = useRoute();
     const navigation = useNavigation();
@@ -22,8 +23,8 @@ export default function UserScreen() {
     }, [item]);
 
     const handleSelectedGenres = (selectedGenres) => {
-        // Faça o que for necessário com os gêneros selecionados
         console.log("Gêneros selecionados:", selectedGenres);
+        setGender(selectedGenres)
     };
 
     return (
