@@ -14,7 +14,7 @@ export default function LoginThree() {
     const [text, setText] = React.useState('');
 
     function handleButtonPress() {
-        navigation.navigate('Home');
+        navigation.navigate('Login');
     }
 
     return (
@@ -51,25 +51,25 @@ export default function LoginThree() {
                 <View className="mt-5 w-full bg-yellow rounded-lg flex-col justify-center items-center">
                     <Pressable
                         className="bg-yellow w-1/2 h-10 flex-col justify-center items-center rounded-lg"
-                        onPress={handleButtonPress}
+                        onPress={() => navigation.navigate('User')}
                     >
-                        <Text className="text-lg">Entrar</Text>
+                        <Text className="text-lg ">Criar uma conta</Text>
                     </Pressable>
                 </View>
 
                 <View
                     className="border border-yellow text-gray-900 mt-5 w-full bg-neutral-800 rounded-lg flex-col justify-center items-center">
                     <Pressable
+                        onPress={handleButtonPress}
                         className="w-1/2 h-10 flex-col justify-center items-center rounded-lg"
-                        onPress={() => navigation.navigate('User')}
                     >
-                        <Text className="text-lg text-whit">Cadastrar</Text>
+                        <Text className="text-lg text-whit">Entrar</Text>
+
                     </Pressable>
                 </View>
             </View>
             <View className="flex-col mt-5 justify-center items-center">
-
-            <FooterLogin order={3}/>
+                <FooterLogin order={3}/>
             </View>
         </View>
     )

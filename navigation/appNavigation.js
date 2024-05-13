@@ -16,6 +16,7 @@ export default function AppNavigation() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName={"LoginScroll"}>
                 <Stack.Screen name="LoginScroll" component={TrendingLogin} options={{ headerShown: false }} />
+                <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Movie" component={MovieScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />

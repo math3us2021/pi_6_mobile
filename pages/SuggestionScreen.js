@@ -35,7 +35,7 @@ export default function SuggestionScreen() {
     return (
         <ScrollView
             contentContainerStyle={{paddingBottom: 20}}
-            className="flex-1 bg-neutral-900">
+            className="flex-1 bg-neut-900">
             <View className="w-full">
                 <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4 mt-3">
                     <TouchableOpacity onPress={() => navigation.goBack()} className="rounded-xl p-1"

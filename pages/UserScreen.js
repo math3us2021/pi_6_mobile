@@ -35,21 +35,21 @@ export default function UserScreen() {
             <View className="w-full bg-neut-900">
                 <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4 mt-3">
                     <TouchableOpacity onPress={() => navigation.goBack()} className="rounded-xl p-1"
-                                      style={{backgroundColor: 'orange'}}>
+                                      style={{backgroundColor: '#2165de'}}>
                         <ChevronLeftIcon size="28" strokeWidth={2.5} color="white"/>
                     </TouchableOpacity>
                 </SafeAreaView>
                 <View className="flex-row justify-center items-center bg-neut-900">
                     <Image
                         source={require('../assets/images/indica.jpg')}
-                        style={{width, height: height * 0.20}}
+                        style={{width, height: height * 0.15}}
                     />
                     <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
                                     style={{
-                                        width, height: height * 0.40,
+                                        width, height: height * 0.18,
                                     }}
-                                    start={{x: 0.1, y: 0}}
-                                    end={{x: 0.1, y: 1}}
+                                    start={{x: 0.5, y: 0}}
+                                    end={{x: 0.5, y: 1}}
                                     className={"absolute bottom-0"}
                     />
                 </View>
@@ -58,14 +58,13 @@ export default function UserScreen() {
                 <Text className="text-3xl text-whit text-center font-bold tracking-wider mb-5">Cadastro</Text>
             </View>
             <View className="mx-4 mb-3 flex-col justify-center items-start">
-            {/*<Text className="text-3xl text-whit text-center font-bold tracking-wider mb-5">Cadastro</Text>*/}
                 <Text className="text-whit text-start font-bold tracking-wider mb-1">*Nome</Text>
                 <TextInput
                     placeholder={"Usuário"}
                     value={username}
                     onChangeText={setUsername}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 text-lg border border-gray-border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg border border-gray-border text-whit text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 <Text className="text-whit text-start mt-5 font-bold tracking-wider mb-1">*Senha</Text>
                 <TextInput
@@ -73,7 +72,7 @@ export default function UserScreen() {
                     value={password}
                     onChangeText={setPassword}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 text-lg  border border-gray-border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className=" text-lg  border border-gray-border text-whit text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
                 <Text className="text-whit text-start mt-5 font-bold tracking-wider mb-1">*E-mail</Text>
                 <TextInput
@@ -81,7 +80,7 @@ export default function UserScreen() {
                     value={email}
                     onChangeText={setEmail}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 text-lg border border-gray-border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg border border-gray-border text-whit text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <Text className="text-whit text-start mt-5 font-bold tracking-wider mb-1">*Celular (DDD)</Text>
@@ -90,7 +89,7 @@ export default function UserScreen() {
                     value={phone}
                     onChangeText={setPhone}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 text-lg border border-gray-border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 text-lg border border-gray-border text-whit text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type={'cel-phone'}
                     options={{
                         maskType: 'BRL',

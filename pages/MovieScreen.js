@@ -41,7 +41,7 @@ export default function MovieScreen() {
     return (
         <ScrollView
             contentContainerStyle={{paddingBottom: 20}}
-            className="flex-1 bg-neutral-900">
+            className="flex-1 bg-neut-900">
             <View className="w-full">
                 <SafeAreaView className="absolute z-20 w-full flex-row justify-between items-center px-4 mt-3">
                     <TouchableOpacity onPress={() => navigation.goBack()} className="rounded-xl p-1"
@@ -78,14 +78,14 @@ export default function MovieScreen() {
             </View>
             <View style={{marginTop: -(height * 0.09)}} className="space-y-3">
                 {/*Title*/}
-                <Text className="text-3xl text-white text-center font-bold tracking-wider">{
+                <Text className="text-3xl text-whit text-center font-bold tracking-wider">{
                     movie?.title
                 }</Text>
                 {/*Status*/}
                 {
                     movie?.id ? (
                         <Text
-                            className="text-neutral-400 font-semibold text-base text-center">{movie?.status} * {movie?.release_date.split('-')[0]} * {movie?.runtime} min</Text>
+                            className="text-gray-border font-semibold text-base text-center">{movie?.status} * {movie?.release_date.split('-')[0]} * {movie?.runtime} min</Text>
                     ) : null
                 }
                 {/*    Genero*/}
@@ -93,7 +93,7 @@ export default function MovieScreen() {
                         {
                             movie?.genres?.map((item, index) => {
                                 return (
-                                    <Text key={index} className="text-neutral-400 font-semibold text-base text-center">
+                                    <Text key={index} className="text-gray-border font-semibold text-base text-center">
                                         {item.name}
                                         {index < movie.genres.length - 1 ? ', ' : ''}
                                     </Text>
@@ -102,7 +102,7 @@ export default function MovieScreen() {
                         }
 
                 </View>
-                <Text className="text-neutral-400 mx-4 tracking-wide">
+                <Text className="text-whit mx-4 tracking-wide">
                     {
                         movie?.overview
                     }

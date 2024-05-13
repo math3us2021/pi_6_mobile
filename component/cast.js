@@ -9,7 +9,7 @@ export default function Cast({cast, navigation}) {
 
     return (
         <View className="my-6">
-            <Text className="text-write text-lg mx-4 mb-5">Elenco</Text>
+            <Text className="text-whit text-lg mx-4 mb-5">Elenco</Text>
             <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -22,17 +22,17 @@ export default function Cast({cast, navigation}) {
                             key={index}
                             className="items-center mr-4">
                             <View
-                                className="overflow-hidden rounded-full h-20 w-20 items-center border border-neutral-500">
+                                className="overflow-hidden rounded-full h-20 w-20 items-center border border-gray-border">
                                 <Image
                                     className="rounded-2xl h-24 w-20"
                                     // source={require('../assets/images/mat.jpeg')}
                                     source={{uri: image185(person?.profile_path)}}
                                 />
                             </View>
-                            <Text className="text-write text-xs mt-1">
+                            <Text className="text-whit text-xs mt-1">
                                 {person?.character.length > 15 ? person?.character.slice(0, 15) + "..." : person?.character}
                             </Text>
-                            <Text className="text-neutral-400 text-xs mt-1">
+                            <Text className="text-gray-border text-xs mt-1">
                                 {person?.original_name.length > 15 ? person?.original_name.slice(0, 15) + "..." : person?.original_name}
                             </Text>
                         </TouchableOpacity>

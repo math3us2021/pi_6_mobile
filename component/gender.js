@@ -31,7 +31,6 @@ export function GenderMovie({ onSelectGenres }) {
 
     return (
         <View className="mt-5 flex flex-col w-full justify-center items-center">
-            {/*<Text className="text-lg">Escolha até 3 generos principais</Text>*/}
             <Text className="text-lg text-whit">ESCOLHA 3 GÊNEROS PRINCIPAIS</Text>
 
             <View className="mt-5 flex flex-row w-full justify-center items-center">
@@ -39,10 +38,10 @@ export function GenderMovie({ onSelectGenres }) {
                     suggestions.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-border m-1 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-yellow' : 'bg-gray-border'}`}
+                            className={`w-1/4 border border-gray-border m-1 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-gray' : 'bg-neut-800'}`}
                             onPress={() => includeSuggestions(item.name)}
                         >
-                            <Text className="text-lg">{item.name}</Text>
+                            <Text className="text-lg text-whit">{item.name}</Text>
                         </Pressable>
                     ))
                 }
@@ -52,10 +51,10 @@ export function GenderMovie({ onSelectGenres }) {
                     suggestions1.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-border m-2 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-yellow' : 'bg-gray-border'}`}
+                            className={`w-1/4 border border-gray-border m-2 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-gray' : 'bg-neut-800'}`}
                             onPress={() => includeSuggestions(item.name)}
                         >
-                            <Text className="text-lg">{item.name}</Text>
+                            <Text className="text-lg text-whit">{item.name}</Text>
                         </Pressable>
                     ))
                 }
