@@ -1,4 +1,15 @@
-import {Dimensions, ScrollView, Text, TouchableOpacity, View, Image, TextInput, Button, Pressable, StyleSheet} from "react-native";
+import {
+    Dimensions,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+    Image,
+    TextInput,
+    Button,
+    Pressable,
+    StyleSheet
+} from "react-native";
 import React, {useEffect, useState} from "react";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {SafeAreaView} from "react-native-safe-area-context";
@@ -21,7 +32,6 @@ export default function SuggestionScreen() {
     }, [item]);
 
 
-
     return (
         <ScrollView
             contentContainerStyle={{paddingBottom: 20}}
@@ -36,7 +46,7 @@ export default function SuggestionScreen() {
                 <View className="flex-row justify-center items-center">
                     <Image
                         source={require('../assets/images/indica.jpg')}
-                        style={{width, height: height * 0.24}}
+                        style={{width, height: height * 0.10}}
                     />
                     <LinearGradient colors={['transparent', 'rgba(23,23,23,0.8)', 'rgba(23,23,23,1)']}
                                     style={{
@@ -48,49 +58,53 @@ export default function SuggestionScreen() {
                     />
                 </View>
             </View>
-            <Text className="text-3xl text-white text-center font-bold tracking-wider mb-5"> Formulário para sugestão</Text>
+            <Text className="text-3xl text-white text-center font-bold tracking-wider mb-5"> Formulário para
+                sugestão</Text>
             <View className="mx-4 mb-3 flex-col justify-center items-center">
                 <TextInput
                     placeholder={"Usuário"}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-4  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <TextInput
                     placeholder={"Senha"}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50  mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <RNPickerSelect
-                    style={pickerSelectStyles}
-                    placeholder={{
-                        label: 'Selecione ...',
-                        value: null,
-                    }}
-                    onValueChange={(value) => console.log(value)}
-                    items={[
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                    ]}
-                />
+                <Pressable
+                    className="bg-gray-50  border mt-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                    <RNPickerSelect
+                        style={pickerSelectStyles}
+                        placeholder={{
+                            label: 'Selecione ...',
+                            value: null,
+                        }}
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            {label: 'Football', value: 'football'},
+                            {label: 'Baseball', value: 'baseball'},
+                            {label: 'Hockey', value: 'hockey'},
+                        ]}
+                    />
+                </Pressable>
 
                 <TextInput
                     placeholder={"Email"}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 border mt-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border mt-5 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-4  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
 
                 <TextInput
                     placeholder={"Fone"}
                     placeholderTextColor={"lightgray"}
-                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 mt-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
             </View>
 
 
-
-            <View  className="mt-5 flex-col justify-center items-center">
+            <View className="mt-5 flex-col justify-center items-center">
                 <Pressable
                     className="bg-orange-400 w-1/2 h-10 flex-col justify-center items-center rounded-lg"
                     onPress={() => navigation.navigate('Home')}
@@ -116,13 +130,14 @@ const pickerSelectStyles = StyleSheet.create({
         paddingRight: 30
     },
     inputAndroid: {
-        fontSize: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        borderWidth: 0.5,
-        borderColor: 'purple',
-        borderRadius: 8,
-        color: 'write',
-        paddingRight: 30
+        marginRight: 30,
+        // fontSize: 20,
+        // paddingHorizontal: 10,
+        // paddingVertical: 8,
+        // borderWidth: 2,
+        // borderColor: 'purple',
+        // borderRadius: 8,
+        // color: 'write',
+        // paddingRight: 30
     }
 });

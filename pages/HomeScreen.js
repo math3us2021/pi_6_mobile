@@ -38,7 +38,7 @@ export default function HomeScreen() {
     }
 
     return (
-        <View className="flex-1 mt-2 bg-neutral-800">
+        <View className="flex-1 mt-2 bg-neut-800">
             <SafeAreaView className="mb-3">
                 <StatusBar style="light"/>
                 <View className="flex-row justify-between items-center mx-4">

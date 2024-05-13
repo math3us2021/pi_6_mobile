@@ -32,15 +32,14 @@ export function GenderMovie({ onSelectGenres }) {
     return (
         <View className="mt-5 flex flex-col w-full justify-center items-center">
             {/*<Text className="text-lg">Escolha até 3 generos principais</Text>*/}
-            <Text className="text-lg">ESCOLHA 3 GÊNEROS PRINCIPAIS</Text>
+            <Text className="text-lg text-whit">ESCOLHA 3 GÊNEROS PRINCIPAIS</Text>
 
             <View className="mt-5 flex flex-row w-full justify-center items-center">
                 {
                     suggestions.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-300' : 'bg-gray-50'}`}
-                            // className="bg-gray-50 w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg "
+                            className={`w-1/4 border border-gray-border m-1 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-yellow' : 'bg-gray-border'}`}
                             onPress={() => includeSuggestions(item.name)}
                         >
                             <Text className="text-lg">{item.name}</Text>
@@ -53,9 +52,7 @@ export function GenderMovie({ onSelectGenres }) {
                     suggestions1.map((item, index) => (
                         <Pressable
                             key={index}
-                            className={`w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-orange-300' : 'bg-gray-50'}`}
-
-                            // className="bg-gray-50 w-1/4 border border-gray-300 text-gray-900 items-center rounded-lg "
+                            className={`w-1/4 border border-gray-border m-2 text-gray-900 items-center rounded-lg ${selectedSuggestions.includes(item.name) ? 'bg-yellow' : 'bg-gray-border'}`}
                             onPress={() => includeSuggestions(item.name)}
                         >
                             <Text className="text-lg">{item.name}</Text>
