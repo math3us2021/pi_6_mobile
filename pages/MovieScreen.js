@@ -12,7 +12,6 @@ import {Loading} from "../component/loading";
 var {width, height} = Dimensions.get('window');
 
 export default function MovieScreen() {
-    let movieName = "Sedução Sex Shop Filme.";
 
     const {params: item} = useRoute();
     const [isFavorite, setIsFavorite] = React.useState(false);
@@ -23,7 +22,6 @@ export default function MovieScreen() {
     const navigation = useNavigation();
 
     useEffect(() => {
-        // console.log('Movie Details', item.id)
         getMovieDetails(item.id)
         getMovieCredits(item.id)
     }, [item]);

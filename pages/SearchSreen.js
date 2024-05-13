@@ -36,12 +36,12 @@ export default function SearchScreen() {
         })
     }
     return (
-        <SafeAreaView className="flex-1 bg-neutral-800 mt-3">
-            <View className="mx-4 mb-3 flex-row justify-between items-center border border-neutral-700 rounded-full">
+        <SafeAreaView className="flex-1 bg-neut-800">
+            <View className="mx-4 mb-3 mt-5 flex-row justify-between items-center border border-gray-border rounded-full">
                 <TextInput
                     onChangeText={handleTextDebounce}
                     placeholder={"Pesquisar Filmes"}
-                    placeholderTextColor={"lightgray"}
+                    placeholderTextColor={"#fff"}
                     className="pb-1 pl-6 flex-1 text-base font-semibold text-write tracking-wider"
                 />
                 <TouchableOpacity
