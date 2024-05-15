@@ -13,6 +13,7 @@ import React, {useState} from "react";
 import {XMarkIcon} from "react-native-heroicons/outline";
 import {useNavigation} from "@react-navigation/native";
 import {image185, searchMovies} from "../api/moviedb";
+import {Menu} from "../component/menu";
 
 var {width, height} = Dimensions.get('window');
 
@@ -20,8 +21,6 @@ export default function SearchScreen() {
     const navigation = useNavigation();
     const [results, setResults] = React.useState([])
     const [loading, setLoading] = useState(false)
-
-
 
     const handleTextDebounce = (value) => {
         setLoading(true)
@@ -86,13 +85,13 @@ export default function SearchScreen() {
                 ):(
                     <View className="flex-1 justify-center items-center">
                         <Image
-                            source={require('../assets/images/picture.png')}
-                            // className="h-96 w-96"
+                            source={require('../assets/images/img.png')}
+                            style={{width: 320, height: 300, resizeMode: 'contain'}}
                             />
                     </View>
                 )
             }
-
+        <Menu onSelect={'Search'}/>
         </SafeAreaView>
     )
 }

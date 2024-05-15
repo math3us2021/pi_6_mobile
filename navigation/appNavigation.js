@@ -8,6 +8,8 @@ import SearchScreen from "../pages/SearchSreen";
 import UserScreen from "../pages/UserScreen";
 import SuggestionScreen from "../pages/SuggestionScreen";
 import TrendingLogin from "../component/trendingLogin";
+import Notifications from "../pages/Notifications";
+import Profile from "../pages/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,8 @@ export default function AppNavigation() {
                 <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="Suggestion" component={SuggestionScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Notifications" component={Notifications} options={{ headerShown: false }} />
+                <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
