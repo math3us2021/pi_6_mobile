@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, Button} from "react-native";
 import React, {useState, useEffect} from "react";
 import {useNavigation} from "@react-navigation/native";
 import {BellIcon} from "react-native-heroicons/solid";
-import {UserIcon, HomeIcon, FilmIcon} from "react-native-heroicons/outline";
+import {UserIcon} from "react-native-heroicons/outline";
 import {socket} from '../socket';
 import Toast from 'react-native-toast-message';
 
@@ -34,7 +34,7 @@ export function HeaderHome() {
                 const menssage = JSON.parse(msg);
                 setMessage(menssage);
                 setNotifications(true);
-                showCustomNotification(message.title);
+                showCustomNotification();
             });
         }
 
@@ -53,17 +53,17 @@ export function HeaderHome() {
         };
     }, []);
 
-    const showCustomNotification = (title) => {
+    const showCustomNotification = () => {
         Toast.show({
             type: 'info',
-            text1: `Novo Filme!  ${title}`,
+            text1: 'Novo Filme!',
             position: 'top',
             visibilityTime: 3000,
             autoHide: true,
             topOffset: 30,
-            onShow: () => {}, // Called when the Toast gets animated in
-            onHide: () => {}, // Called when the Toast gets animated out (if `autoHide` was set to `true`)
-            onPress: () => {}  // Called when the Toast is pressed
+            onShow: () => {},
+            onHide: () => {},
+            onPress: () => {}
         });
     };
 
@@ -78,7 +78,7 @@ export function HeaderHome() {
                 </View>
                 <View className="flex-row">
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Notifications')}
+                        <TouchableOpacity onPress={() => navigation.navigate('Notifications', { message, setMessage, setNotifications})}
                                           className={` w-10 h-10 flex-col justify-center
                                            items-center rounded-full ${notifications ? 'bg-yellow' : 'bg-blue'}`}>
                             <BellIcon size="32" color={"#ffffff"}/>
@@ -92,7 +92,6 @@ export function HeaderHome() {
                     </View>
                 </View>
             </View>
-            {/*<Button title="Mostrar Notificação" onPress={showCustomNotification} />*/}
         </View>
     )
 }

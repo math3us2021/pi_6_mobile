@@ -1,58 +1,33 @@
-import React, {useEffect, useState} from "react";
-import {Dimensions, Image, Pressable, ScrollView, StatusBar, Text, TouchableOpacity, View} from "react-native";
+import React, {useEffect} from "react";
+import {Dimensions, Text, TouchableOpacity, View} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {useNavigation} from "@react-navigation/native";
-import {FaceSmileIcon} from "react-native-heroicons/solid";
-import {BellIcon} from "react-native-heroicons/solid";
+import {useNavigation, useRoute} from "@react-navigation/native";
+import {BellIcon, FaceSmileIcon} from "react-native-heroicons/solid";
 import {ChevronLeftIcon} from "react-native-heroicons/outline";
-import {socket} from '../socket';
-// import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 
 const {width, height} = Dimensions.get('window');
 
 export default function Notifications() {
+    const route = useRoute();
+    const { message, setMessage, setNotifications } = route.params;
+
     const navigation = useNavigation();
-    const [results, setResults] = React.useState(true)
-    const [notifications, setNotifications] = useState([]);
-    const [isConnected, setIsConnected] = useState(false);
-    const [transport, setTransport] = useState('N/A');
-    const [message, setMessage] = useState({});
+
 
     useEffect(() => {
-        if (socket.connected) {
-            onConnect();
-        }
+        return navigation.addListener('beforeRemove', (e) => {
+            // Prevent default behavior of leaving the screen
+            e.preventDefault();
 
-        function onConnect() {
-            setIsConnected(true);
-            setTransport(socket.io.engine.transport.name);
+            // Clear the message and notifications state
+            setMessage({});
+            setNotifications(false);
 
-            socket.io.engine.on('upgrade', (transport) => {
-                setTransport(transport.name);
-            });
-
-            socket.on('message', (msg) => {
-                console.log(`Message from server: ${msg}`);
-                const menssage = JSON.parse(msg);
-                setMessage(menssage);
-            });
-        }
-
-        function onDisconnect() {
-            setIsConnected(false);
-            setTransport('N/A');
-        }
-
-        socket.on('connect', onConnect);
-        socket.on('disconnect', onDisconnect);
-
-        return () => {
-            socket.off('connect', onConnect);
-            socket.off('disconnect', onDisconnect);
-            socket.off('message');
-        };
-    }, []);
+            // Navigate back manually
+            navigation.dispatch(e.data.action);
+        });
+    }, [navigation]);
 
     const isEmpty = (obj) => {
         return Object.keys(obj).length === 0;
