@@ -41,7 +41,7 @@ export default function SearchScreen() {
                     onChangeText={handleTextDebounce}
                     placeholder={"Pesquisar Filmes"}
                     placeholderTextColor={"#fff"}
-                    className="pb-1 pl-6 flex-1 text-base font-semibold text-write tracking-wider"
+                    className="pb-1 pl-6 flex-1 text-base font-semibold text-whit tracking-wider"
                 />
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Home')}
@@ -57,7 +57,7 @@ export default function SearchScreen() {
                         contentContainerStyle={{paddingHorizontal: 10}}
                         className="space-y-3"
                     >
-                        <Text className="text-white font-semibold ml-1">Resultados: ({results.length})</Text>
+                        <Text className="text-whit font-semibold ml-1">Resultados: ({results.length})</Text>
                         <View className="flex-row flex-wrap justify-between">
                             {
                                 results.map((item, index) => (
@@ -72,7 +72,7 @@ export default function SearchScreen() {
                                                    source={{uri: image185(item?.poster_path)}}
                                                    style={{width: width * 0.45, height: height * 0.30}}
                                             />
-                                            <Text className="text-white font-semibold text-center">{
+                                            <Text className="text-whit font-semibold text-center">{
                                                 item?.title.length > 15 ? item?.title.slice(0, 15) + "..." : item?.title
 
                                             }</Text>

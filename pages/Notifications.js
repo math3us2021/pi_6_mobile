@@ -4,29 +4,33 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {BellIcon, FaceSmileIcon} from "react-native-heroicons/solid";
 import {ChevronLeftIcon} from "react-native-heroicons/outline";
-
+import { useMessage } from '../context/MessageContext';
 
 const {width, height} = Dimensions.get('window');
 
 export default function Notifications() {
     const route = useRoute();
-    const { message, setMessage, setNotifications } = route.params;
+    // const {message, setMessage, setNotifications} = route.params;
 
     const navigation = useNavigation();
-
+    const { message, setMessage, notifications, setNotifications } = useMessage();
 
     useEffect(() => {
-        return navigation.addListener('beforeRemove', (e) => {
-            // Prevent default behavior of leaving the screen
-            e.preventDefault();
+        if (!message || Object.keys(message).length === 0) {
+            navigation.goBack();
+        }
 
-            // Clear the message and notifications state
+        // return navigation.addListener('beforeRemove', (e) => {
+        //     e.preventDefault();
+        //     setMessage({});
+        //     setNotifications(false);
+        //     navigation.dispatch(e.data.action);
+        // });
+
+        return () => {
             setMessage({});
             setNotifications(false);
-
-            // Navigate back manually
-            navigation.dispatch(e.data.action);
-        });
+        };
     }, [navigation]);
 
     const isEmpty = (obj) => {
@@ -75,10 +79,14 @@ export default function Notifications() {
                                     de filme!</Text>
                             </View>
                             <View className="flex-col items-start justify-start">
-                                <Text className="text-3xl mt-5 text-gray-border text-start font-bold tracking-wider">{message.title}</Text>
-                                <Text className="text-sm mt-1 text-gray-border text-start font-bold tracking-wider">{message.releaseDate} - {message.runtime}</Text>
-                                <Text className="text-sm mt-1 text-gray-border text-start font-bold tracking-wider">Genêro:{message.genreId}</Text>
-                                <Text className="text-lg mt-1 text-gray-border text-start font-bold tracking-wider">Descrição: {message.overview}</Text>
+                                <Text
+                                    className="text-3xl mt-5 text-gray-border text-start font-bold tracking-wider">{message.title}</Text>
+                                <Text
+                                    className="text-sm mt-1 text-gray-border text-start font-bold tracking-wider">{message.releaseDate} - {message.runtime}</Text>
+                                <Text
+                                    className="text-sm mt-1 text-gray-border text-start font-bold tracking-wider">Genêro:{message.genreId}</Text>
+                                <Text
+                                    className="text-lg mt-1 text-gray-border text-start font-bold tracking-wider">Descrição: {message.overview}</Text>
 
                             </View>
                         </View>

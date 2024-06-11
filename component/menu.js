@@ -6,9 +6,13 @@ import {HomeIcon,} from "react-native-heroicons/solid";
 import {useNavigation} from "@react-navigation/native";
 
 
-export function Menu({onSelect}) {
+
+export function Menu({onSelect, sugestionMovies = null}) {
 
     const navigation = useNavigation();
+    const handleSuggestionPress = () => {
+        navigation.navigate('Suggestion', { sugestion: sugestionMovies });
+    };
 
     return (
         <SafeAreaView className="my-2">
@@ -21,7 +25,8 @@ export function Menu({onSelect}) {
                 </View>
 
                 <View >
-                    <TouchableOpacity onPress={() => navigation.navigate('Suggestion')} className=" items-center">
+                    <TouchableOpacity onPress={handleSuggestionPress}
+                                      className=" items-center">
                         <FilmIcon size="30" strokeWidth={2} color={onSelect === 'Suggestion' ? "#FED521" : "#fff"}/>
                         <Text className="text-sm text-gray text-gray ">Recomendar</Text>
                     </TouchableOpacity>

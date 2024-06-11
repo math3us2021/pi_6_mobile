@@ -6,27 +6,52 @@ import {ChevronLeftIcon} from "react-native-heroicons/outline";
 import {LinearGradient} from "expo-linear-gradient";
 import {GenderMovie} from "../component/gender";
 import { TextInputMask } from 'react-native-masked-text';
+import {saveUser} from "../api/userdb";
 import axios from 'axios';
+
 
 
 var {width, height} = Dimensions.get('window');
 
 export default function UserScreen() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
-    const [gender, setGender] = useState([])
+    const [favoriteGenres, setfavoriteGenres] = useState([])
 
     const {params: item} = useRoute();
     const navigation = useNavigation();
-    useEffect(() => {
-    }, [item]);
+    // useEffect(() => {
+    // }, [item]);
 
     const handleSelectedGenres = (selectedGenres) => {
-        console.log("Gêneros selecionados:", selectedGenres);
-        setGender(selectedGenres)
+        setfavoriteGenres(selectedGenres)
     };
+
+    const saveUserPage = () => {
+        if (name === "" || email === "" || password === "" || phone === "" || favoriteGenres.length === 0) {
+            alert('Preencha todos os campos')
+            return
+        }
+
+        const user = {
+            name,
+            email,
+            password,
+            phone,
+            favoriteGenres : favoriteGenres.join(", "),
+            receiveNotifications: true,
+            isAdmin: false
+        }
+
+        console.log(user)
+        saveUser(user).then((response) => {
+            navigation.navigate('Home', {user: user})
+        }).catch((error) => {
+            navigation.navigate('Login')
+        })
+    }
 
     return (
         <ScrollView
@@ -61,8 +86,8 @@ export default function UserScreen() {
                 <Text className="text-whit text-start font-bold tracking-wider mb-1">*Nome</Text>
                 <TextInput
                     placeholder={"Usuário"}
-                    value={username}
-                    onChangeText={setUsername}
+                    value={name}
+                    onChangeText={setName}
                     placeholderTextColor={"lightgray"}
                     className="bg-gray-50 text-lg border border-gray-border text-whit text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
@@ -102,7 +127,7 @@ export default function UserScreen() {
             <View  className="mt-4 flex-col justify-center items-center w-full rounded-lg">
                 <Pressable
                     className="bg-yellow  w-3/4 h-10 flex-col justify-center items-center rounded-lg"
-                    onPress={() => navigation.navigate('Home')}
+                    onPress={saveUserPage}
                 >
                     <Text className="text-lg">Cadastrar</Text>
                 </Pressable>

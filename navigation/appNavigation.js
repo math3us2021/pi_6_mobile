@@ -10,23 +10,33 @@ import SuggestionScreen from "../pages/SuggestionScreen";
 import TrendingLogin from "../component/trendingLogin";
 import Notifications from "../pages/Notifications";
 import Profile from "../pages/Profile";
+import ResultScreen from "../pages/ResultScreen";
+import Toast from 'react-native-toast-message';
+import {MessageProvider} from "../context/MessageContext";
+import {UserProvider} from "../context/UserContext";
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName={"LoginScroll"}>
-                <Stack.Screen name="LoginScroll" component={TrendingLogin} options={{ headerShown: false }} />
-                <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Movie" component={MovieScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Suggestion" component={SuggestionScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="Notifications" component={Notifications} options={{ headerShown: false }} />
-                <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <UserProvider>
+            <MessageProvider>
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName={"LoginScroll"}>
+                        <Stack.Screen name="LoginScroll" component={TrendingLogin} options={{headerShown: false}}/>
+                        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Movie" component={MovieScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Search" component={SearchScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="User" component={UserScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Suggestion" component={SuggestionScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Result" component={ResultScreen} options={{headerShown: false}}/>
+                        <Stack.Screen name="Notifications" component={Notifications} options={{headerShown: false}}/>
+                        <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+                    </Stack.Navigator>
+                    <Toast/>
+                </NavigationContainer>
+            </MessageProvider>
+        </UserProvider>
     );
 };

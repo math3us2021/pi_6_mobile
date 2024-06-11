@@ -5,16 +5,55 @@ import {BellIcon} from "react-native-heroicons/solid";
 import {UserIcon} from "react-native-heroicons/outline";
 import {socket} from '../socket';
 import Toast from 'react-native-toast-message';
+import { useMessage } from '../context/MessageContext';
 
-
-export function HeaderHome() {
+export function HeaderHome({user}) {
+    const { message, setMessage, notifications, setNotifications } = useMessage();
 
     const navigation = useNavigation();
-    const [name, setName] = useState('Usuário')
-    const [isConnected, setIsConnected] = useState(false);
-    const [transport, setTransport] = useState('N/A');
-    const [message, setMessage] = useState({});
-    const [notifications, setNotifications] = useState(false)
+    // const [name, setName] = useState('Usuário')
+    // const [isConnected, setIsConnected] = useState(false);
+    // const [transport, setTransport] = useState('N/A');
+    // const [message, setMessage] = useState({});
+    // const [notifications, setNotifications] = useState(false)
+
+    // useEffect(() => {
+    //     if (socket.connected) {
+    //         onConnect();
+    //     }
+    //
+    //     function onConnect() {
+    //         setIsConnected(true);
+    //         setTransport(socket.io.engine.transport.name);
+    //
+    //         socket.io.engine.on('upgrade', (transport) => {
+    //             setTransport(transport.name);
+    //         });
+    //
+    //         socket.on('message', (msg) => {
+    //             console.log(`Message from server: ${msg}`);
+    //             const menssage = JSON.parse(msg);
+    //             setMessage(menssage);
+    //             setNotifications(true);
+    //             showCustomNotification();
+    //         });
+    //     }
+    //
+    //     function onDisconnect() {
+    //         setIsConnected(false);
+    //         setTransport('N/A');
+    //     }
+    //
+    //     socket.on('connect', onConnect);
+    //     socket.on('disconnect', onDisconnect);
+    //
+    //     return () => {
+    //         socket.off('connect', onConnect);
+    //         socket.off('disconnect', onDisconnect);
+    //         socket.off('message');
+    //     };
+    // }, []);
+
 
     useEffect(() => {
         if (socket.connected) {
@@ -22,25 +61,17 @@ export function HeaderHome() {
         }
 
         function onConnect() {
-            setIsConnected(true);
-            setTransport(socket.io.engine.transport.name);
-
-            socket.io.engine.on('upgrade', (transport) => {
-                setTransport(transport.name);
-            });
-
             socket.on('message', (msg) => {
                 console.log(`Message from server: ${msg}`);
-                const menssage = JSON.parse(msg);
-                setMessage(menssage);
+                const parsedMessage = JSON.parse(msg);
+                setMessage(parsedMessage);
                 setNotifications(true);
                 showCustomNotification();
             });
         }
 
         function onDisconnect() {
-            setIsConnected(false);
-            setTransport('N/A');
+            // Handle disconnect
         }
 
         socket.on('connect', onConnect);
@@ -61,24 +92,52 @@ export function HeaderHome() {
             visibilityTime: 3000,
             autoHide: true,
             topOffset: 30,
-            onShow: () => {},
-            onHide: () => {},
-            onPress: () => {}
+            containerStyle: {
+                // Defina o tamanho desejado aqui
+                width: 300, // Largura
+                height: 200, // Altura
+                borderRadius: 10, // Borda arredondada
+                backgroundColor: '#d8b72c', // Cor de fundo
+                // Adicione outros estilos conforme necessário
+            },
+            text1Style: {
+                // Estilos para o texto principal
+                fontSize: 20, // Tamanho da fonte
+                // Adicione outros estilos conforme necessário
+            },
+            onShow: () => {
+            },
+            onHide: () => {
+            },
+            onPress: () => {
+            }
         });
     };
 
     return (
-        <View className="flex-col justify-center items-between mx-4 mt-5 mb-5">
-            <Toast ref={(ref) => Toast.setRef(ref)} />
 
+        // <View className="flex-col justify-center items-between mx-4 mt-5 mb-5">
+        //     <View className="flex-row justify-between items-center">
+        //         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+        //             <UserIcon size={30} color="black" />
+        //         </TouchableOpacity>
+        //         <Text className="text-lg font-semibold">{user.name}</Text>
+        //         <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+        //             <BellIcon size={30} color={notifications ? "red" : "black"} />
+        //         </TouchableOpacity>
+        //     </View>
+        // </View>
+
+        <View className="flex-col justify-center items-between mx-4 mt-5 mb-5">
+            {/*<Toast ref={toastRef}/>*/}
             <View className="flex-row justify-between ">
                 <View className="flex-col">
-                    <Text className="text-sm text-gray ">Bem-Vindo: {name}!</Text>
+                    <Text className="text-sm text-gray ">Bem-Vindo: {user.name}!</Text>
                     <Text className="text-lg font-bold text-whit">Que tal um filme hoje?</Text>
                 </View>
                 <View className="flex-row">
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Notifications', { message, setMessage, setNotifications})}
+                        <TouchableOpacity onPress={() => navigation.navigate('Notifications')}
                                           className={` w-10 h-10 flex-col justify-center
                                            items-center rounded-full ${notifications ? 'bg-yellow' : 'bg-blue'}`}>
                             <BellIcon size="32" color={"#ffffff"}/>

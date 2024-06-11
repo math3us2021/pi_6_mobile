@@ -2,9 +2,10 @@ import axios from 'axios';
 import { apiKeys } from '../constantes';
 
 const apiBase = 'https://api.themoviedb.org/3';
-const trendingMovies = `${apiBase}/trending/movie/day?api_key=${apiKeys}`;
+// const trendingMovies = `${apiBase}/trending/movie/day?api_key=${apiKeys}`;
+const trendingMovies = `${apiBase}/movie/popular?api_key=${apiKeys}`;
 const upcomingMovies = `${apiBase}/movie/upcoming?api_key=${apiKeys}`;
-const topRatedMovies = `${apiBase}/top_rated?api_key=${apiKeys}`;
+const topRatedMovies = `${apiBase}/movie/top_rated?api_key=${apiKeys}`;
 
 const movieDetails = id=> `${apiBase}/movie/${id}?api_key=${apiKeys}&language=pt-BR`;
 const movieCreditis = id=> `${apiBase}/movie/${id}/credits?api_key=${apiKeys}`;
@@ -35,12 +36,39 @@ export const featchTrendingMovies = async () => {
 }
 
 export const featchUpcomingMovies = async () => {
+
     return await apiCall(upcomingMovies)
 }
 
-export const featchTopRatedMovies = async () => {
+export const featchTopRatedMovies = async (genreIDs) => {
+    const topRatedMovies = `${apiBase}/discover/movie?api_key=${apiKeys}&sort_by=popularity.desc&language=pt-BR&with_genres=${genreIDs}`;
     return await apiCall(topRatedMovies)
 }
+
+export const featchTopRatedMovies1 = async (genreIDs) => {
+    console.log(genreIDs)
+    // const topRatedMovies = `${apiBase}/movie/top_rated?api_key=${apiKeys}&with_genres=${genreIDs}`;
+    // const topRatedMovies = `${apiBase}/discover/movie?api_key=${apiKeys}&with_genres=${genreIDs}`;
+    const topRatedMovies = `${apiBase}/movie/top_rated?include_adult=false&api_key=${apiKeys}`;
+    return await apiCall(topRatedMovies)
+}
+
+export const featchMovieByID = async (id) => {
+    const topRatedMovies = `${apiBase}/movie/${id}?api_key=${apiKeys}`;
+    return await apiCall(topRatedMovies)
+}
+
+export const featchTopRatedMovies2 = async (genreIDs) => {
+    console.log(genreIDs)
+    const topRatedMovies = `${apiBase}/discover/movie?api_key=${apiKeys}&with_genres=${genreIDs}`;
+    return await apiCall(topRatedMovies)
+}
+
+export const featchTopRatedMovies3 = async (genreIDs) => {
+    const topRatedMovies = `${apiBase}/discover/movie?api_key=${apiKeys}&with_genres=${genreIDs}`;
+    return await apiCall(topRatedMovies)
+}
+
 
 export const featchMovieDetails = async (id) => {
     return await apiCall(movieDetails(id))
