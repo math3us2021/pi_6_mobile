@@ -36,7 +36,6 @@ const MovieCard = ({item, handleClick}) => {
     return (
         <TouchableWithoutFeedback onPress={() => handleClick(item)}>
             <Image
-                // source={require('../assets/images/hash.png')}
                 source={{uri: image500(item.poster_path)}}
                 style={{width: width * 0.60, height: height * 0.40}}
                 className="rounded-lg"
@@ -44,26 +43,3 @@ const MovieCard = ({item, handleClick}) => {
         </TouchableWithoutFeedback>
     )
 }
-//
-// const MovieCard = ({item, handleClick}) => {
-//     if (!item || !item.poster_path) {
-//         return (
-//             <TouchableWithoutFeedback onPress={() => handleClick(item)}>
-//                 <Image
-//                     source={require('../assets/images/logo.png')}
-//                     style={{width: width * 0.60, height: height * 0.40}}
-//                     className="rounded-lg"
-//                 />
-//             </TouchableWithoutFeedback>
-//         )
-//     }
-//     return (
-//         <TouchableWithoutFeedback onPress={() => handleClick(item)}>
-//             <Image
-//                 source={{uri: image500(item.poster_path)}}
-//                 style={{width: width * 0.60, height: height * 0.40}}
-//                 className="rounded-lg"
-//             />
-//         </TouchableWithoutFeedback>
-//     )
-// }

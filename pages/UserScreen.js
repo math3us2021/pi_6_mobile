@@ -7,9 +7,6 @@ import {LinearGradient} from "expo-linear-gradient";
 import {GenderMovie} from "../component/gender";
 import { TextInputMask } from 'react-native-masked-text';
 import {saveUser} from "../api/userdb";
-import axios from 'axios';
-
-
 
 var {width, height} = Dimensions.get('window');
 
@@ -22,8 +19,6 @@ export default function UserScreen() {
 
     const {params: item} = useRoute();
     const navigation = useNavigation();
-    // useEffect(() => {
-    // }, [item]);
 
     const handleSelectedGenres = (selectedGenres) => {
         setfavoriteGenres(selectedGenres)
@@ -45,7 +40,6 @@ export default function UserScreen() {
             isAdmin: false
         }
 
-        console.log(user)
         saveUser(user).then((response) => {
             navigation.navigate('Home', {user: user})
         }).catch((error) => {

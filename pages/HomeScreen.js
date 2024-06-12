@@ -20,7 +20,6 @@ var {width, height} = Dimensions.get('window');
 
 export default function HomeScreen() {
     const route = useRoute();
-    // const user = route.params.user ? route.params.user : '';
     const { user } = useUser();
 
     const [trending, setTrending] = useState([])

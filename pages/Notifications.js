@@ -10,7 +10,6 @@ const {width, height} = Dimensions.get('window');
 
 export default function Notifications() {
     const route = useRoute();
-    // const {message, setMessage, setNotifications} = route.params;
 
     const navigation = useNavigation();
     const { message, setMessage, notifications, setNotifications } = useMessage();
@@ -19,13 +18,6 @@ export default function Notifications() {
         if (!message || Object.keys(message).length === 0) {
             navigation.goBack();
         }
-
-        // return navigation.addListener('beforeRemove', (e) => {
-        //     e.preventDefault();
-        //     setMessage({});
-        //     setNotifications(false);
-        //     navigation.dispatch(e.data.action);
-        // });
 
         return () => {
             setMessage({});
