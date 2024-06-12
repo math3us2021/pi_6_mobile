@@ -46,9 +46,6 @@ export const featchTopRatedMovies = async (genreIDs) => {
 }
 
 export const featchTopRatedMovies1 = async (genreIDs) => {
-    console.log(genreIDs)
-    // const topRatedMovies = `${apiBase}/movie/top_rated?api_key=${apiKeys}&with_genres=${genreIDs}`;
-    // const topRatedMovies = `${apiBase}/discover/movie?api_key=${apiKeys}&with_genres=${genreIDs}`;
     const topRatedMovies = `${apiBase}/movie/top_rated?include_adult=false&api_key=${apiKeys}`;
     return await apiCall(topRatedMovies)
 }

@@ -19,7 +19,6 @@ export function HeaderHome({user}) {
 
         function onConnect() {
             socket.on('message', (msg) => {
-                console.log(`Message from server: ${msg}`);
                 const parsedMessage = JSON.parse(msg);
                 setMessage(parsedMessage);
                 setNotifications(true);
